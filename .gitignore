@@ -1,0 +1,5 @@
+.stack-work/
+.idea/
+my-project.cabal
+my-project.iml
+*~
