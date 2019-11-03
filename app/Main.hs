@@ -7,12 +7,12 @@ main :: IO ()
 main = do
   let fs = MemoryFileSystem { rootDirectory = Directory "root"
     [
-      Directory "test"
+      newDirectory "test"
         [
-          File "testFile" "content"
+          newFile "testFile" "content"
         ],
-      File "anotherFile" "some content"
+      newFile "anotherFile" "some content"
     ]
   }
-  let (Just content) = fileContent <$> getObject fs "/test/testFile"
+  let (Just content) = fileContent <$> getFile fs "/test/testFile"
   putStrLn $ "File content: " ++ content
