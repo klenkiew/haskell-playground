@@ -46,6 +46,7 @@ getFSObjectByPath :: Directory -> String -> Maybe FSObject
 getFSObjectByPath dir = getFSObjectByPathInternal (DirectoryObject dir)
 
 getFSObjectByPathInternal :: FSObject -> String -> Maybe FSObject
+getFSObjectByPathInternal dir@DirectoryObject{} "" = Just dir
 getFSObjectByPathInternal (DirectoryObject dir) path = getFSObject dir fsObjectName >>= flip getFSObjectByPathInternal restPath
   where (fsObjectName, restPath) = strSplit "/" path
 getFSObjectByPathInternal file@FileObject{} "" = Just file
